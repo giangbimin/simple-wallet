@@ -121,4 +121,4 @@ The API provides the following endpoints:
 
 ## Testing
 
-- Run tests for the API using the RSpec framework with `bundle exec r
+- Run tests for the API using the RSpec framework with `bundle exec rspec`
