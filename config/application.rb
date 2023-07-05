@@ -34,6 +34,10 @@ module WalletApi
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+    config.action_controller.perform_caching = true
+    config.session_store :cache_store, key: ENV['APP_SESSION_KEY'], expire_after: 1.month
+    config.middleware.use config.session_store, config.session_options
     config.api_only = true
   end
 end

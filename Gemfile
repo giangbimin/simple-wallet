@@ -7,7 +7,8 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 # gem "jbuilder"
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
+gem 'hiredis'
 # gem "kredis"
 gem "bcrypt", "~> 3.1.7"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
