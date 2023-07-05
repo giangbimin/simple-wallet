@@ -1,7 +1,7 @@
 class TeamAccount < ApplicationRecord
   validates :user_id, presence: true
   belongs_to :user
-  has_one :wallet, as: :entity
+  has_one :wallet, as: :entity, class_name: 'TeamWallet'
 
   after_create :create_wallet
 
