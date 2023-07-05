@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+user = User.create(email: 'test1@example.com', password: 'password')
+PersonalAccount.create(name: "PersonalAccount", user_id: user.id)
+StockAccount.create(name: "StockAccount", user_id: user.id)
+TeamAccount.create(name: "TeamAccount", user_id: user.id)
+Wallet.all.each do |wallet|
+  Transaction.create(source_wallet_id: nil, target_wallet_id: wallet.id, amount: 100)
+end
+wallet_ids = Wallet.pluck(:id)
+amounts = (0..100).to_a
+wallet_ids.each do |cur_id|
+  ids = wallet_ids - [cur_id]
+  ids.each do |id|
+    Transaction.create(source_wallet_id: cur_id, target_wallet_id: id, amount: amounts.sample)
+  end
+end

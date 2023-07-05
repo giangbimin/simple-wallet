@@ -2,6 +2,10 @@ require 'digest'
 
 class User < ApplicationRecord
   attr_accessor :password
+  
+  has_many :personal_accounts
+  has_many :stock_accounts
+  has_many :team_accounts
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, length: { minimum: 6 }
