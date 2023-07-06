@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "5332b60d-d923-4206-8d4c-85dbc522d36d",
+		"name": "Wallet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "gianghoangdev1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12313123123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{hostname}}/signin",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2ODg3MTQ3MDF9.23dYRY7xRtZzv63_xQZCWaY1G7t-eEDnFWKS7uxfiyw",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{hostname}}/refresh",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2ODg1NTI3ODl9.3sXSW2_G8j1_q51xQyUmSca6gWKCi6JeEvzW4A53j2g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{hostname}}/signout",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"signout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "personal_accounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2ODg2MjcxNzJ9.d9I1IgIrgh-mUo1TZzHgnXgZw5DUywoyLdWdrD8qOhw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "asdsadasd",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{hostname}}/api/v1/personal_accounts",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"personal_accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stock_accounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2ODg2MjcxNzJ9.d9I1IgIrgh-mUo1TZzHgnXgZw5DUywoyLdWdrD8qOhw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "asdsadasd",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{hostname}}/api/v1/stock_accounts",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"stock_accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "team_accounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2ODg2MjcxNzJ9.d9I1IgIrgh-mUo1TZzHgnXgZw5DUywoyLdWdrD8qOhw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "asdsadasd",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{hostname}}/api/v1/team_accounts",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"team_accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wallet",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2ODg2MjcxNzJ9.d9I1IgIrgh-mUo1TZzHgnXgZw5DUywoyLdWdrD8qOhw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{hostname}}/api/v1/wallets/:id",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"wallets",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2ODg2MzAwMjl9.tIEUhKxL42xETtmkXqOROOY_wJIwzBvUBD41EjrARj0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "target_wallet_id",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "amount",
+							"value": "11",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{hostname}}/api/v1/wallets/:wallet_id/transactions",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"wallets",
+						":wallet_id",
+						"transactions"
+					],
+					"variable": [
+						{
+							"key": "wallet_id",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2ODg2MzAwMjl9.tIEUhKxL42xETtmkXqOROOY_wJIwzBvUBD41EjrARj0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "asdsadasd",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{hostname}}/api/v1/transactions/1",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "hostname",
+			"value": "http://0.0.0.0:3000",
+			"type": "default"
+		}
+	]
+}
