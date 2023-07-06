@@ -9,13 +9,13 @@ class Api::V1::TransactionsController < ApplicationController
   end
 
   def create
-    transaction = Transaction.new(transaction_params)
-    transaction.source_wallet_id = @wallet.id
+    service = AssetTransferService.new(@wallet, transaction_params)
+    response = service.execute
     return render json: {
-      data: transaction.as_json(only: [:id, :source_wallet_id, :target_wallet_id, :amount]),
-      message: 'Created'
-    }, status: :created if transaction.save
-    render json: {message: transaction.errors.full_messages }, status: :not_acceptable 
+      data: response[:transaction].as_json(only: [:id, :source_wallet_id, :target_wallet_id, :amount]),
+      message: response[:message]
+    }, status: :created if response[:status]
+    render json: {message: response[:message]}, status: :not_acceptable 
   end
   
   private
