@@ -8,7 +8,7 @@ RSpec.describe Transaction, type: :model do
   describe 'validations' do
     subject { build(:transaction) }
     it { is_expected.to validate_presence_of(:amount) }
-    it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:amount).is_greater_than(0) }
     context 'when skip_wallet_id_validate is true' do
       before { subject.skip_wallet_id_validate = true }
       context 'when both source_wallet_id and target_wallet_id are blank' do
@@ -55,6 +55,27 @@ RSpec.describe Transaction, type: :model do
 
       it "adds an error to the amount attribute" do
         expect(transaction.errors[:amount]).to include("Out of balance")
+      end
+    end
+
+    context "when target_wallet_id is present" do
+      let(:transaction) { Transaction.new(target_wallet_id: wallet_id) }
+
+      context "when the wallet exists" do
+        let(:wallet_id) { target_wallet.id }
+
+        it "does not add an error" do
+          transaction.valid?
+          expect(transaction.errors[:target_wallet_id]).to be_empty
+        end
+      end
+
+      context "when the wallet does not exist" do
+        let(:wallet_id) { -1 }
+        it "adds an error to target_wallet_id" do
+          transaction.valid?
+          expect(transaction.errors[:target_wallet_id]).to include("Not Found")
+        end
       end
     end
   end

@@ -14,12 +14,14 @@ RSpec.describe Wallet, type: :model do
 
   describe '#balance' do
     let(:personal_account) { create(:personal_account) }
+    let(:team_account) { create(:team_account) }
     let(:wallet) { personal_account.wallet }
+    let(:target_wallet) { team_account.wallet }
 
     it 'returns the correct balance' do
       create(:transaction, target_wallet_id: wallet.id, amount: 100, skip_wallet_id_validate: true)
       create(:transaction, target_wallet_id: wallet.id, amount: 100, skip_wallet_id_validate: true)
-      create(:transaction, source_wallet_id: wallet.id, amount: 50, skip_wallet_id_validate: true)
+      create(:transaction, source_wallet_id: wallet.id, target_wallet_id: target_wallet.id, amount: 50)
       expect(wallet.balance).to eq(150)
     end
 

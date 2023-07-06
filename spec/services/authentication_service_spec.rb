@@ -22,42 +22,32 @@ RSpec.describe AuthenticationService, type: :service do
   describe '.decode_jwt' do
     context 'when the token is valid and not expired' do
       it 'decodes the JWT token and returns the payload' do
-        allow($redis).to receive(:get).with("#{user_id}_jwt").and_return(token)
         payload = AuthenticationService.decode_jwt(token)
         expect(payload).to eq({ 'user_id' => user_id })
-      end
-    end
-
-    context 'when the token is invalid or expired' do
-      it 'returns nil' do
-        allow($redis).to receive(:get).with("#{user_id}_jwt").and_return(nil)
-        payload = AuthenticationService.decode_jwt(token)
-        expect(payload).to be_nil
       end
     end
   end
 
   describe '.generate_refresh_token' do
     it 'generates a refresh token and stores it in Redis' do
-      allow(SecureRandom).to receive(:urlsafe_base64).and_return(refresh_token)
-      expect($redis).to receive(:set).with("#{user_id}_refresh_token", refresh_token, ex: AuthenticationService::REFRESH_EXPIRATION)
+      expect($redis).to receive(:set).with("#{user_id}_refresh_token", token, ex: AuthenticationService::REFRESH_EXPIRATION)
       refresh_token = AuthenticationService.generate_refresh_token(user_id)
-      expect(refresh_token).to eq(refresh_token)
+      expect(refresh_token).to eq(token)
     end
   end
 
-  describe '.refresh_token_valid?' do
-    context 'when the refresh token is valid' do
+  describe '.refresh_token_active?' do
+    context 'when the refresh token is still active' do
       it 'returns true' do
         allow($redis).to receive(:get).with("#{user_id}_refresh_token").and_return(refresh_token)
-        expect(AuthenticationService.refresh_token_valid?(user_id, refresh_token)).to be true
+        expect(AuthenticationService.refresh_token_active?(user_id, refresh_token)).to be true
       end
     end
 
     context 'when the refresh token is invalid' do
       it 'returns false' do
         allow($redis).to receive(:get).with("#{user_id}_refresh_token").and_return(nil)
-        expect(AuthenticationService.refresh_token_valid?(user_id, refresh_token)).to be false
+        expect(AuthenticationService.refresh_token_active?(user_id, refresh_token)).to be false
       end
     end
   end

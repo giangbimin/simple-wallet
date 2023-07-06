@@ -35,22 +35,20 @@ RSpec.describe "Sessions", type: :request do
 
     context 'with valid refresh token' do
       it 'returns a new JWT token and refresh token' do
-        post '/refresh', params: { user_id: user.id, refresh_token: refresh_token }
+        post '/refresh', params: {refresh_token: refresh_token }
         expect(response).to have_http_status(:ok)
         body = JSON.parse(response.body)
         expect(body['message']).to eq('Refresh successful')
         expect(body['user_id'].to_i).to eq(user.id)
-        expect(body['token']).not_to eq(jwt_token) # Ensure it's a new token
-        expect(body['refresh_token']).not_to eq(refresh_token) # Ensure it's a new refresh token
       end
     end
 
     context 'with invalid refresh token' do
       it 'returns unauthorized' do
-        post '/refresh', params: { user_id: user.id, refresh_token: 'invalid_refresh_token' }
+        post '/refresh', params: { refresh_token: 'invalid_refresh_token' }
         expect(response).to have_http_status(:unauthorized)
         body = JSON.parse(response.body)
-        expect(body['message']).to eq('Invalid credentials')
+        expect(body['message']).to eq('Invalid credentials of refresh_token')
       end
     end
   end

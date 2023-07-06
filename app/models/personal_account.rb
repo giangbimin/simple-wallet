@@ -5,6 +5,10 @@ class PersonalAccount < ApplicationRecord
 
   after_create :create_wallet
 
+  def wallet_id
+    wallet.id
+  end
+
   private
 
   def create_wallet
