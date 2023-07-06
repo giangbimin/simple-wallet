@@ -93,6 +93,7 @@ The API includes the following models and relationships:
 - `Stock`: Represents a stock entity with its wallet.
 - `Team`: Represents a team entity with its wallet.
 - `Wallet`: The base class for wallets with shared attributes and behaviors for money manipulation. Derived classes are used for specific entity types (e.g., `UserWallet`, `StockWallet`).
+- `Transaction`: handle amount transfer beetween wallets
 
 ## Wallet System
 
