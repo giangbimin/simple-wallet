@@ -4,7 +4,7 @@ development:
   host: <%= ENV['DB_HOST'] %>
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  pool: 5
+  pool: 20
   database: wallet_api_development
 
 test:
@@ -13,8 +13,8 @@ test:
   host: <%= ENV['DB_HOST'] %>
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  pool: 5
-  database:wallet_apitest
+  pool: 20
+  database: wallet_api_test
 
 production:
   url: <%= ENV['DATABASE_URL'] %>

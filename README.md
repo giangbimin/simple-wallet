@@ -21,6 +21,7 @@
   - [Custom Sign-In](#custom-sign-in)
   - [LatestStockPrice Library](#lateststockprice-library)
   - [Testing](#testing)
+  - [DOCKER](#docker)
 
 ## Description
 
@@ -123,3 +124,31 @@ The API provides the following endpoints:
 ## Testing
 
 - Run tests for the API using the RSpec framework with `bundle exec rspec`
+
+## DOCKER
+
+- env config without docker
+
+```
+DB_HOST=localhost
+REDIS_URL="redis://localhost:6379/0"
+```
+
+- with docker
+
+```
+DB_HOST=db
+REDIS_URL="redis://redis/0"
+```
+
+- STEPS with docker
+
+```
+docker-compose up --build -d
+docker-compose exec web sh
+rails db:create
+rails db:migrate
+rails db:seed
+rails db:migrate RAILS_ENV=test
+rspec spec
+```

@@ -17,7 +17,7 @@ ADD ./Gemfile Gemfile
 ADD ./Gemfile.lock Gemfile.lock
 RUN bundle install
 
-ENV APP_ROOT /ytbook
+ENV APP_ROOT /wallet-api
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 COPY . $APP_ROOT
